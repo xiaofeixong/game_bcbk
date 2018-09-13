@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #score {
+      position: absolute;
+      top: 450px;
+      left: 100px;
+      font-size: 30px;
+    }
+  </style>
+</head>
+
+<body>
+</body>
+<span id="score">得分: 0</span>
+
+</html>
+<script>
+  var canvas = document.createElement('canvas')
+  var ctx = canvas.getContext('2d')
+  // 水印canvas
+  var canvas2 = document.createElement('canvas')
+  var ctx2 = canvas2.getContext('2d')
+  // 定义变量
+  var w = 100
+  var blocks = []
+  var flag = false
+  var speed = 2
+  var num = 0
+  var requestId = 0
+  canvas.width = 100 * 3
+  canvas.height = 100 * 4
+  canvas.style.border = '5px solid black'
+  canvas2.width = 100 * 3
+  canvas2.height = 100 * 4
+  canvas2.style.border = '5px solid black'
+  canvas2.style.position = 'absolute'
+  canvas2.style.left = '9px'
+  canvas2.style.top = '9px'
+  document.body.appendChild(canvas)
+  document.body.appendChild(canvas2)
+  // 计分栏
+  var score = document.querySelector('#score')
+  draw_line()
+  ready_game()
+  // 游戏结束
+  function game_over() {
+    alert('游戏结束，请重新开始!')
+    ready_game()
+  }
+  // 动画
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    ctx.fillStyle = 'black'
+    blocks.forEach(function (val, index) {
+      ctx.fillRect(val.x, val.y += speed, w, w)
+      // if (val.y > canvas.height) {
+      // blocks.splice(index, 1)
+      // }
+    })
+    if (blocks.length === 0) {
+      ctx.fillStyle = 'black'
+      var x = ~~(Math.random() * 3) * w
+      var obj = {
+        x: x,
+        y: -100
+      }
+      ctx.fillRect(obj.x, obj.y, w, w)
+      blocks.unshift(obj)
+      addClick_event(obj)
+    }
+    if (blocks[0].y > 0) {
+      ctx.fillStyle = 'black'
+      var x = ~~(Math.random() * 3) * w
+      var obj = {
+        x: x,
+        y: -100
+      }
+      ctx.fillRect(obj.x, obj.y, w, w)
+      blocks.unshift(obj)
+      addClick_event(obj)
+    }
+    speed = num / 10 + 2
+    requestId = requestAnimationFrame(animate)
+    if (blocks[blocks.length - 1].y >= canvas.height) {
+      // 结束动画
+      cancelAnimationFrame(requestId)
+      game_over()
+    }
+  }
+  // 开始游戏
+  function start_game() {
+    blocks.pop()
+    num++
+    score.textContent = '得分: ' + num
+    flag = true
+    animate()
+  }
+  // 方块移动
+  function destroy_block(e) {
+    if (!flag) return
+    var cli_x = e.x,
+      cli_y = e.y
+    blocks.forEach(function (val, index) {
+      if (cli_x > val.x && cli_x < val.x + w && cli_y > val.y && cli_y < val.y + w) {
+        if (index === blocks.length - 1) {
+          blocks.pop()
+          num++
+          score.textContent = '得分: ' + num
+        }
+      }
+    })
+  }
+  // 在指定位置添加click事件
+  function addClick_event(obj) {
+    canvas2.addEventListener('click', function (e) {
+      var cli_x = e.x - 10
+      var cli_y = e.y - 10
+      if (cli_x > obj.x && cli_x < obj.x + w && cli_y > obj.y && cli_y < obj.y + w && obj.flag && !flag) {
+        start_game()
+      } else destroy_block(e)
+    })
+  }
+  // 准备开始游戏
+  function ready_game() {
+    blocks = []
+    flag = false
+    speed = 2
+    num = 0
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    score.textContent = '得分: ' + num
+    ctx.fillStyle = 'black'
+    var x = 0
+    for (var i = 0; i < canvas.height; i += w) {
+      x = ~~(Math.random() * 3) * w
+      var obj = {
+        x: x,
+        y: i
+      }
+      ctx.fillRect(x, i, w, w)
+      if (i == 300) {
+        ctx.fillStyle = 'white'
+        ctx.font = '20px consolas'
+        ctx.fillText('开始游戏', x + 10, i + w / 2)
+        obj.flag = true
+      }
+      addClick_event(obj)
+      blocks.push(obj)
+    }
+  }
+  // 划线
+  function draw_line() {
+    ctx.strokeStyle = 'black'
+    for (var i = w; i < canvas.height; i += w) {
+      ctx.moveTo(0, i)
+      ctx.lineTo(canvas.width, i)
+      ctx.stroke()
+    }
+    for (var i = w; i < canvas.width; i += w) {
+      ctx.moveTo(i, 0)
+      ctx.lineTo(i, canvas.height)
+      ctx.stroke()
+    }
+    ctx2.drawImage(canvas, 0, 0, canvas.width, canvas.height)
+  }
+</script>
