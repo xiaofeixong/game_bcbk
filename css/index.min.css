@@ -6,6 +6,20 @@ body {
   position: relative;
 }
 
+.home__container {
+  background-image: url("../images/home.jpg");
+  background-size: 100% 100%;
+}
+
+.home__link {
+  position: absolute;
+  right: 4.62963%;
+  top: 72.91667%;
+  width: 10%;
+  height: 5%;
+  background-color: #000;
+}
+
 #gameZone {
   width: 100%;
   height: 100%;

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/index.min.css">
+</head>
+
+<body class="home__container">
+  <a class="home__start" href="/index.html"></a>
+  <div class="home__link" id="home_activity"></div>
+  <div class="home__popup"></div>
+</body>
+<script src="./js/lib/zepto.min.js"></script>
+<script>
+  $('home_activity').click(function () {
+    $(this).removeClass('hide');
+    $(this).addClass('show');
+  })
+</script>
+
+</html>

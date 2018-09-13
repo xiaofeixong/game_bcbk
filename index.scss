@@ -1,4 +1,14 @@
 $reduce:4%;
+$totalWidth:1080;
+$totalHeight:1920;
+
+@function percentWidth($n) {
+  @return #{$n/$totalWidth * 100+'%'};
+}
+
+@function percentHeight($n) {
+  @return #{$n/$totalHeight * 100+'%'};
+}
 
 html,
 body {
@@ -7,6 +17,34 @@ body {
   height: 100%;
   position: relative;
 }
+
+// home start
+.home {
+  &__container {
+    background-image: url('../images/home.jpg');
+    background-size: 100% 100%;
+  }
+
+  &__link {
+    position: absolute;
+    right: percentWidth(50);
+    top: percentHeight(1400);
+    width: 10%;
+    height: 5%;
+    background-color: #000;
+  }
+
+  &__start {
+    position: absolute;
+    right: percentWidth(50);
+    top: percentHeight(1400);
+    width: 10%;
+    height: 5%;
+    background-color: #000;
+  }
+}
+
+// home end
 
 #gameZone {
   width: 100%;
