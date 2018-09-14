@@ -11,13 +11,32 @@
 
 <body class="game__body">
   <div class="game__user"></div>
-  <div class="game__score" id="gameScore"></div>
+  <div class="game__count" id="gameCount"></div>
   <div class="game__time-tip">TIME</div>
   <div class="game__time-num">00:00</div>
-  <div id="gameZone">
+  <div id="gameZone"></div>
+  <div class="mark" id="popupScore">
+    <div class="game__popup-score">
+        <div class="game__popup-user"></div>
+        <div class="game__popup-desc">
+          <p>您的积分为31分</p>
+          <p>当前最佳排名为xxx名</p>
+        </div>
+        <div class="game__popup-ranking" id="ranking"></div>
+        <div class="game__popup-award" id="award"></div>
+    </div>
+    <div class="game__popup-again" id="playAgain"></div>
+  </div>
+  <div class="mark" id="popupAward">
+    
   </div>
   <script src="./js/lib/zepto.min.js"></script>
   <script src="./js/index.js"></script>
+  <script>
+    $('#playAgain').click(function (e) { 
+      location.reload()      
+    });
+  </script>
 </body>
 
 </html>

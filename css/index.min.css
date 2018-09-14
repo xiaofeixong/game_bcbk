@@ -5,6 +5,24 @@ body {
   padding: 0;
   height: 100%;
   position: relative;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.mark {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  display: none;
+  position: absolute;
+  z-index: 99;
+}
+
+.mark-close {
+  background-image: url(../images/close.png);
+  background-size: 100% 100%;
 }
 
 .home__container {
@@ -13,21 +31,47 @@ body {
 }
 
 .home__link {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   position: absolute;
-  right: 4.62963%;
-  top: 72.91667%;
-  width: 10%;
-  height: 5%;
-  background-color: #000;
+  width: 14.35185%;
+  height: 8.07292%;
+  left: 78.24074%;
+  top: 63.59375%;
 }
 
 .home__start {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   position: absolute;
-  right: 4.62963%;
-  top: 72.91667%;
-  width: 10%;
-  height: 5%;
-  background-color: #000;
+  width: 59.62963%;
+  height: 8.59375%;
+  left: 17.77778%;
+  top: 63.59375%;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.home__close {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  position: absolute;
+  width: 6.01852%;
+  height: 3.38542%;
+  left: 89.81481%;
+  top: 9.0625%;
+}
+
+.home__popup {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  position: absolute;
+  width: 84.72222%;
+  height: 74.79167%;
+  left: 8.14815%;
+  top: 11.875%;
+  background-image: url("../images/activity.png");
+  background-size: 100% 100%;
 }
 
 .game__body {
@@ -35,6 +79,8 @@ body {
 }
 
 .game__user {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   position: absolute;
   width: 18.51852%;
   height: 10.41667%;
@@ -44,7 +90,9 @@ body {
   border-radius: 50%;
 }
 
-.game__score {
+.game__count {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   position: absolute;
   width: 18.51852%;
   height: 3.125%;
@@ -69,6 +117,75 @@ body {
 .game__time-num {
   top: 6.25%;
   font-size: 2rem;
+}
+
+.game__popup-score {
+  background-image: url(../images/score.png);
+  background-size: 100% 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  position: absolute;
+  width: 95.83333%;
+  height: 48.33333%;
+  left: 2.31481%;
+  top: 19.79167%;
+}
+
+.game__popup-user {
+  background-color: #000;
+  border-radius: 50%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  position: absolute;
+  width: 28.33333%;
+  height: 31.875%;
+  left: 35.92593%;
+  top: 0.83333%;
+}
+
+.game__popup-desc {
+  font-size: 0.78333rem;
+  line-height: 1;
+  color: #000;
+  position: absolute;
+  text-align: center;
+  left: 0;
+  right: 0;
+  top: 54.6875%;
+}
+
+.game__popup-ranking {
+  border: 1px solid #000;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  position: absolute;
+  width: 40.74074%;
+  height: 13.02083%;
+  left: 7.40741%;
+  top: 79.6875%;
+}
+
+.game__popup-award {
+  border: 1px solid #000;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  position: absolute;
+  width: 40.74074%;
+  height: 13.02083%;
+  left: 51.85185%;
+  top: 79.6875%;
+}
+
+.game__popup-again {
+  background-image: url(../images/play-again.png);
+  background-size: 100% 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  position: absolute;
+  width: 43.7963%;
+  height: 7.13542%;
+  left: 28.05556%;
+  top: 70.625%;
 }
 
 #gameZone {

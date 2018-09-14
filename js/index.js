@@ -1,7 +1,7 @@
 var $gameZone = document.getElementById('gameZone');
 var rowNum = 5 // 盒子行数
 var reduce = '8%' // #gridA初始top值6
-var step = 1 // 调节速度
+var step = 1.3 // 调节速度
 var boxHeight = 1 / rowNum * 100 // 小格子高度
 // 1. 生成交替的盒子id
 var createGridId = (() => {
@@ -69,7 +69,7 @@ function createBoxDom(identify) {
 // 4. 盒子移动动画函数
 var distance = 0 // 总移动距离
 var count = 0 // 总得分，即点击黑块次数
-$('#gameScore').text(count)
+$('#gameCount').text(count)
 var isDied = false
 var myReq
 
@@ -119,13 +119,16 @@ $('#gameZone').on('touchstart', function (event) {
     // target.className = 'smallGrid isSelect'
     target.style.opacity = 0.5
     count++
-    $('#gameScore').text(count)
+    $('#gameCount').text(count)
     console.log(count, 'addEventListener');
     if (myReq) cancelAnimationFrame(myReq)
     move()
   } else {
     target.className = 'smallGrid error'
     isDied = true
+    setTimeout(function () {
+      $('#popupScore').show()
+    }, 1000)
     // todo: 游戏结束，弹出遮罩
     console.log('GG');
   }

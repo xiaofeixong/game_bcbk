@@ -12,13 +12,18 @@
 <body class="home__container">
   <a class="home__start" href="/index.html"></a>
   <div class="home__link" id="home_activity"></div>
-  <div class="home__popup"></div>
+  <div class="mark" id="homeMark">
+    <div class="mark-close home__close" id="homeMarkClose"></div>
+    <div class="home__popup"></div>
+  </div>
 </body>
 <script src="./js/lib/zepto.min.js"></script>
 <script>
-  $('home_activity').click(function () {
-    $(this).removeClass('hide');
-    $(this).addClass('show');
+  $('#home_activity').click(function () {
+    $('#homeMark').show();
+  })
+  $('#homeMarkClose').click(function () {
+    $('#homeMark').hide('show');
   })
 </script>
 
