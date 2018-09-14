@@ -1,3 +1,4 @@
+@import './reset.scss';
 $reduce:8;
 $totalWidth:1080;
 $totalHeight:1920;
@@ -21,6 +22,15 @@ $totalHeight:1920;
   height: #{$h/$totalHeight * 100+'%'};
   left: #{$l/$totalWidth * 100+'%'};
   top: #{$t/$totalHeight * 100+'%'};
+}
+
+@mixin size-position-rem($w, $h, $l, $t) {
+  box-sizing: border-box;
+  position: absolute;
+  width: #{$w/60 + 'rem'};
+  height: #{$h/60 + 'rem'};
+  left: #{$l/60 + 'rem'};
+  top: #{$t/60 + 'rem'};
 }
 
 html,
@@ -47,6 +57,26 @@ body {
   }
 }
 
+.tip {
+  &-error {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 999;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.8);
+    text-align: center;
+    padding: rem(80) 0;
+    display: none;
+  }
+
+  &-success {
+    @extend .tip-error;
+  }
+}
+
 
 // home start
 .home {
@@ -58,6 +88,16 @@ body {
   &__link {
     // border: 1px solid #000;
     @include size-position(155, 155, 845, 1221);
+  }
+
+  &__people {
+    color: #fff;
+    font-size: rem(60);
+    position: absolute;
+    top: ph(1360);
+    left: 0;
+    right: 0;
+    text-align: center;
   }
 
   &__start {
@@ -130,7 +170,8 @@ body {
       border-radius: 50%;
       @include size-position(306, 612, 388, 16);
     }
-    &-desc{
+
+    &-desc {
       font-size: rem(47);
       line-height: 1;
       color: #000;
@@ -140,19 +181,49 @@ body {
       right: 0;
       top: ph(1050);
     }
-    &-ranking{
+
+    &-ranking {
       border: 1px solid #000;
       @include size-position(440, 250, 80, 1530);
     }
-    &-award{
+
+    &-award {
       border: 1px solid #000;
       @include size-position(440, 250, 560, 1530);
     }
-    &-again{
+
+    &-again {
       background-image: url(../images/play-again.png);
       background-size: 100% 100%;
       @include size-position(473, 137, 303, 1356);
 
+    }
+  }
+
+  &__award {
+    &-bg {
+      background-image: url(../images/submit.png);
+      background-size: 100% 100%;
+      @include size-position(1035, 1068, 25, 239);
+    }
+
+    &-name {
+      border: 1px solid rgb(210, 103, 39);
+      border-radius: rem(30);
+      padding-left: pw(27);
+      vertical-align: middle;
+      color: rgb(102, 102, 102);
+      @include size-position(684, 118, 195, 786);
+    }
+
+    &-phone {
+      @extend .game__award-name;
+      @include size-position(684, 118, 195, 948);
+    }
+
+    &-submit {
+      border: 1px solid rgb(210, 103, 39);
+      @include size-position(420, 124, 329, 1120);
     }
   }
 }

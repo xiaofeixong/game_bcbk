@@ -17,25 +17,47 @@
   <div id="gameZone"></div>
   <div class="mark" id="popupScore">
     <div class="game__popup-score">
-        <div class="game__popup-user"></div>
-        <div class="game__popup-desc">
-          <p>您的积分为31分</p>
-          <p>当前最佳排名为xxx名</p>
-        </div>
-        <div class="game__popup-ranking" id="ranking"></div>
-        <div class="game__popup-award" id="award"></div>
+      <div class="game__popup-user"></div>
+      <div class="game__popup-desc">
+        <p>您的积分为31分</p>
+        <p>当前最佳排名为xxx名</p>
+      </div>
+      <div class="game__popup-ranking" id="ranking"></div>
+      <div class="game__popup-award" id="award"></div>
     </div>
     <div class="game__popup-again" id="playAgain"></div>
   </div>
   <div class="mark" id="popupAward">
-    
+    <div class="game__award-bg"></div>
+    <input class="game__award-name" placeholder="姓名NAME:">
+    <input class="game__award-phone" placeholder="电话TELPHONE:">
+    <div class="game__award-submit" id="submit"></div>
   </div>
+  <div class="tip-error" id="tipError">姓名不能为空！</div>
+  <!-- <div class="tip-success">提交成功！</div> -->
   <script src="./js/lib/zepto.min.js"></script>
   <script src="./js/index.js"></script>
   <script>
-    $('#playAgain').click(function (e) { 
-      location.reload()      
+    $('#playAgain').click(function (e) {
+      location.reload()
     });
+    $('#popupAward').show()
+    $('#award').click(function (e) {
+      $('#popupAward').show()
+      $('#popupScore').hide()
+    });
+    $('#submit').click(function () {
+      $('#tipError').show()
+      setTimeout(function () {
+        $("#tipError").animate({
+            opacity: 0,
+          }, 2000,
+          'ease-out',
+          function () {
+            $('#tipError').hide().css('opacity', 1)
+          })
+      }, 1000);
+    })
   </script>
 </body>
 
