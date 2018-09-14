@@ -1,8 +1,8 @@
 var $gameZone = document.getElementById('gameZone');
 var rowNum = 5 // 盒子行数
-var boxHeight = 20 // 小格子高度
-// var reduce = 4 // #gridA初始top值
+var reduce = '8%' // #gridA初始top值6
 var step = 1 // 调节速度
+var boxHeight = 1 / rowNum * 100 // 小格子高度
 // 1. 生成交替的盒子id
 var createGridId = (() => {
   var gid = 'a'
@@ -15,17 +15,29 @@ var createGridId = (() => {
 // 2. 生成黑块数组
 function createRandomIds() {
   var arr = []
-  for (let i = 0; i < rowNum; i++) {
+  for (var i = 0; i < rowNum; i++) {
     arr.push(Math.floor(Math.random() * 4) + i * 4)
   }
   console.log(arr, '  --  createRandomIds');
   return arr
 }
+
+function createWhiteGrid() {
+  var whiteArr = []
+  for (var i = 0; i < rowNum; i++) {
+    var whiteNum = Math.floor(Math.random() * 4)
+    for (var j = 0; j <= whiteNum; j++) {
+      whiteArr.push(Math.floor(Math.random() * 4) + i * 4)
+    }
+  }
+  return whiteArr
+}
 // 3. 根据黑块数组+盒子id => 生成数组dom，拼到body中
 var idsArr = []
 
 function createBoxDom(identify) {
-  var tempArr = createRandomIds()
+  var tempArr = createRandomIds() // 黑块ids
+  var whiteArr = createWhiteGrid() // 白块ids
 
   var gidStr = createGridId()
   console.log(gidStr, '  --  createBoxDom');
@@ -33,19 +45,21 @@ function createBoxDom(identify) {
   $div.id = gidStr
 
   if (identify) {
-    // tempArr.pop()
+    tempArr.pop()
   } else {
-    $div.style.top = '4%'
+    $div.style.top = reduce
     $div.style.transform = 'translate3d(0,' + (-100) + '%,0)' // 负的BoxDom高度加上隐藏高度
   }
 
   idsArr = tempArr.concat(idsArr)
 
   var domString = ''
-  for (let i = 0; i < 4 * rowNum; i++) {
-    let isBlackClass = ''
+  for (var i = 0; i < 4 * rowNum; i++) {
+    var isBlackClass = ''
     if (tempArr.indexOf(i) > -1) {
       isBlackClass = 'isBlack'
+    } else if (whiteArr.indexOf(i) > -1) {
+      isBlackClass = 'isWhite'
     }
     domString += '<div class="smallGrid ' + isBlackClass + '" id="grid_' + i + '"><div class="box"></div></div>'
   }
@@ -55,6 +69,7 @@ function createBoxDom(identify) {
 // 4. 盒子移动动画函数
 var distance = 0 // 总移动距离
 var count = 0 // 总得分，即点击黑块次数
+$('#gameScore').text(count)
 var isDied = false
 var myReq
 
@@ -89,7 +104,7 @@ function move() {
 }
 
 // 5.格子点击事件
-$gameZone.addEventListener('touchstart', function (event) {
+$('#gameZone').on('touchstart', function (event) {
   if (isDied) return
 
   var event = event || window.event;
@@ -97,11 +112,14 @@ $gameZone.addEventListener('touchstart', function (event) {
   if (target.className.indexOf('smallGrid') === -1) {
     target = target.parentNode
   }
+  if (target.className.indexOf('smallGrid') === -1) return
 
   // 当前点击的格子是最后一个黑格
   if (Number(target.id.replace('grid_', '')) === idsArr.pop()) {
-    target.className = 'smallGrid isSelect'
+    // target.className = 'smallGrid isSelect'
+    target.style.opacity = 0.5
     count++
+    $('#gameScore').text(count)
     console.log(count, 'addEventListener');
     if (myReq) cancelAnimationFrame(myReq)
     move()
