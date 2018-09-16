@@ -15,6 +15,7 @@
   <div class="game__time-tip">TIME</div>
   <div class="game__time-num">00:00</div>
   <div id="gameZone"></div>
+  <!-- 得分弹框 start -->
   <div class="mark" id="popupScore">
     <div class="game__popup-score">
       <div class="game__popup-user"></div>
@@ -27,6 +28,26 @@
     </div>
     <div class="game__popup-again" id="playAgain"></div>
   </div>
+  <!-- 得分弹框 end -->
+
+  <!-- 排行榜弹框 start -->
+  <div class="mark" id="popupRanking">
+    <div class="mark-close game__ranking-close" id="rankingMarkClose"></div>
+    <div class="game__ranking-bg"></div>
+    <!-- 当前排名 -->
+    <div class="game__ranking-self">当前排名：xxxx位(只显示前100名)</div>
+    <div class="game__ranking-table" id="rankingTable">
+      <ul class="game__ranking-title">
+        <li>排名</li>
+        <li>头像</li>
+        <li>昵称</li>
+        <li>积分</li>
+      </ul>
+    </div>
+  </div>
+  <!-- 排行榜弹框 end -->
+
+  <!-- 提交弹框 start -->
   <div class="mark" id="popupAward">
     <div class="game__award-bg"></div>
     <input class="game__award-name" placeholder="姓名NAME:">
@@ -34,14 +55,61 @@
     <div class="game__award-submit" id="submit"></div>
   </div>
   <div class="tip-error" id="tipError">姓名不能为空！</div>
-  <!-- <div class="tip-success">提交成功！</div> -->
+  <div class="tip-success">提交成功！</div>
+  <!-- 提交弹框 end -->
   <script src="./js/lib/zepto.min.js"></script>
   <script src="./js/index.js"></script>
   <script>
     $('#playAgain').click(function (e) {
       location.reload()
     });
-    $('#popupAward').show()
+    // 排行榜
+    var rankingArr = [
+      {
+        ranking: 1,
+        score: 123,
+        nickName: 'xxx',
+        avatar: '○<'
+      },
+      {
+        ranking: 2,
+        score: 123,
+        nickName: 'xxx',
+      },
+      {
+        ranking: 3,
+        score: 111,
+        nickName: 'xxx',
+      },
+      {
+        ranking: 4,
+        score: 111,
+        nickName: 'xxx',
+      },
+      {
+        ranking: 5,
+        score: 100,
+        nickName: 'xxx',
+      }
+    ]
+    var domString = ''
+    rankingArr.forEach(function (el) {
+      domString += '<ul class="game__ranking-item"><li>No.' + el.ranking + '</li><li><img src=" ' + el.avatar + '" class="game__ranking-avatar"></li><li>' + el.nickName + '</li><li>' + el.ranking + '</li></ul>'
+      domString += '<ul class="game__ranking-item"><li>No.' + el.ranking + '</li><li><img src=" ' + el.avatar + '" class="game__ranking-avatar"></li><li>' + el.nickName + '</li><li>' + el.ranking + '</li></ul>'
+      domString += '<ul class="game__ranking-item"><li>No.' + el.ranking + '</li><li><img src=" ' + el.avatar + '" class="game__ranking-avatar"></li><li>' + el.nickName + '</li><li>' + el.ranking + '</li></ul>'
+    })
+    $('#rankingTable').append(domString)
+
+    $('#rankingMarkClose').click(function () {
+      $('#popupRanking').hide()
+      location.reload()
+    });
+    $('#ranking').click(function () {
+      $('#popupScore').hide()
+      $('#popupRanking').show()
+    });
+
+    // 领奖台 -- submit
     $('#award').click(function (e) {
       $('#popupAward').show()
       $('#popupScore').hide()
@@ -50,14 +118,14 @@
       $('#tipError').show()
       setTimeout(function () {
         $("#tipError").animate({
-            opacity: 0,
-          }, 2000,
+          opacity: 0,
+        }, 2000,
           'ease-out',
           function () {
             $('#tipError').hide().css('opacity', 1)
           })
       }, 1000);
-    })
+    });
   </script>
 </body>
 
