@@ -1,0 +1,25 @@
+@function pw($n) {
+  @return #{$n/$totalWidth * 100+'%'};
+}
+
+@function ph($n) {
+  @return #{$n/$totalHeight * 100+'%'};
+}
+
+@mixin size-position($w, $h, $l, $t) {
+  box-sizing: border-box;
+  position: absolute;
+  width: #{$w/$totalWidth * 100+'%'};
+  height: #{$h/$totalHeight * 100+'%'};
+  left: #{$l/$totalWidth * 100+'%'};
+  top: #{$t/$totalHeight * 100+'%'};
+}
+
+@mixin size-position-rem($w, $h, $l, $t) {
+  box-sizing: border-box;
+  position: absolute;
+  width: #{$w / 1.44 + 'px'};
+  height: #{$h / 1.44 + 'px'};
+  left: #{$l / 1.44 + 'px'};
+  top: #{$t / 1.44 - 100 + 'px'};
+}

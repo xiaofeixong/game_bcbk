@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>别踩白块</title>
+  <meta name="description" content="报价审核、验房、装修监理、家居折扣券，总有一个你需要的！">
+  <meta name="keywords" content="免费验房、免费检测、报价审核、装修监理、家居折扣券">
+  <meta name="format-detection" content="telephone=no" />
+
+  <link rel="stylesheet" type="text/css" href="/lib/flexible/flexible.css?__inline">
+  <script type="text/javascript" src="/lib/flexible/flexible.js?__inline"></script>
+  <link href="//static.fdc.com.cn/common/images/logo-160x160.png" rel="shortcut icon" type="image/x-icon">
+  <link href="//static.fdc.com.cn/common/images/logo-160x160.png" rel="apple-touch-icon-precomposed">
+  <link rel="stylesheet" type="text/css" href="../../scss/style.scss">
+  <!-- <script src="http://img3.fdc.com.cn/count/hotcount.js" type="text/javascript" language="javascript"></script> -->
+
+</head>
+<body class="home__container">
+  <a class="home__start" href="/game.html"></a>
+  <div class="home__link" id="home_activity"></div>
+  <div class="home__people">已有123456人参加活动</div>
+  <div class="mark" id="homeMark">
+    <div class="mark-close home__close" id="homeMarkClose"></div>
+    <div class="home__popup"></div>
+  </div>
+  <script src="/lib/zepto/zepto.min.js"></script>
+  <script src="../tools/config.js"></script>
+  <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+  <!-- <script src="./main.js"></script> -->
+  <script>
+    // 活动弹框
+    $('#home_activity').click(function () {
+      $('#homeMark').show();
+    })
+    $('#homeMarkClose').click(function () {
+      $('#homeMark').hide('show');
+    })
+  </script>
+</body>
+
+</html>
