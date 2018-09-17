@@ -2,163 +2,78 @@
 <html lang="zh-CN">
 
 <head>
-  <meta charset="UTF-8">
-  <title>别踩白块</title>
-  <meta name="description" content="报价审核、验房、装修监理、家居折扣券，总有一个你需要的！">
-  <meta name="keywords" content="免费验房、免费检测、报价审核、装修监理、家居折扣券">
-  <meta name="format-detection" content="telephone=no" />
+    <meta charset="UTF-8">
+    <title>别踩白块</title>
+    <meta name="description" content="报价审核、验房、装修监理、家居折扣券，总有一个你需要的！">
+    <meta name="keywords" content="免费验房、免费检测、报价审核、装修监理、家居折扣券">
+    <meta name="format-detection" content="telephone=no" />
 
-  <link rel="stylesheet" type="text/css" href="/lib/flexible/flexible.css?__inline">
-  <script type="text/javascript" src="/lib/flexible/flexible.js?__inline"></script>
-  <link href="//static.fdc.com.cn/common/images/logo-160x160.png" rel="shortcut icon" type="image/x-icon">
-  <link href="//static.fdc.com.cn/common/images/logo-160x160.png" rel="apple-touch-icon-precomposed">
-  <link rel="stylesheet" type="text/css" href="../../scss/style.scss">
-  <!-- <script src="http://img3.fdc.com.cn/count/hotcount.js" type="text/javascript" language="javascript"></script> -->
+    <link rel="stylesheet" type="text/css" href="/lib/flexible/flexible.css?__inline">
+    <script type="text/javascript" src="/lib/flexible/flexible.js?__inline"></script>
+    <link href="//static.fdc.com.cn/common/images/logo-160x160.png" rel="shortcut icon" type="image/x-icon">
+    <link href="//static.fdc.com.cn/common/images/logo-160x160.png" rel="apple-touch-icon-precomposed">
+    <link rel="stylesheet" type="text/css" href="../../scss/style.scss">
+    <!-- <script src="http://img3.fdc.com.cn/count/hotcount.js" type="text/javascript" language="javascript"></script> -->
 
 </head>
 
 <body class="game__body">
-  <div class="game__user"></div>
-  <div class="game__count" id="gameCount"></div>
-  <div class="game__time-tip">TIME</div>
-  <div class="game__time-num" id="gameTime">10:00</div>
-  <div id="gameZone"></div>
-  <!-- 得分弹框 start -->
-  <div class="mark" id="popupScore">
-    <div class="game__popup-score">
-      <div class="game__popup-user"></div>
-      <div class="game__popup-desc">
-        <p>您的积分为<span id="userScore">0</span>分</p>
-        <p>当前最佳排名为xxx名</p>
-      </div>
-      <!-- 排行榜 -->
-      <div class="game__popup-ranking" id="ranking"></div>
-      <!-- 领奖台 -->
-      <div class="game__popup-award" id="award"></div>
+    <img class="game__user" id="userAvatar" src="" alt="">
+    <div class="game__count" id="gameCount"></div>
+    <div class="game__time-tip">TIME</div>
+    <div class="game__time-num" id="gameTime">10:00</div>
+    <div id="gameZone"></div>
+    <!-- 得分弹框 start -->
+    <div class="mark" id="popupScore">
+        <div class="game__popup-score">
+            <img class="game__popup-user" id="gamePopupAvatar" src="" alt="">
+            <div class="game__popup-desc">
+                <p>您的积分为<span id="userScore">0</span>分</p>
+                <p>当前最佳排名为<span id="userRanking">1</span>名</p>
+            </div>
+            <!-- 排行榜 -->
+            <div class="game__popup-ranking" id="ranking"></div>
+            <!-- 领奖台 -->
+            <div class="game__popup-award" id="award"></div>
+        </div>
+        <!-- 再玩一次 -->
+        <div class="game__popup-again" id="playAgain"></div>
     </div>
-    <!-- 再玩一次 -->
-    <div class="game__popup-again" id="playAgain"></div>
-  </div>
-  <!-- 得分弹框 end -->
+    <!-- 得分弹框 end -->
 
-  <!-- 排行榜弹框 start -->
-  <div class="mark" id="popupRanking">
-    <div class="mark-close game__ranking-close" id="rankingMarkClose"></div>
-    <div class="game__ranking-bg"></div>
-    <!-- 当前排名 -->
-    <div class="game__ranking-self">当前排名：xxxx位(只显示前100名)</div>
-    <div class="game__ranking-table" id="rankingTable">
-      <ul class="game__ranking-title">
-        <li>排名</li>
-        <li>头像</li>
-        <li>昵称</li>
-        <li>积分</li>
-      </ul>
+    <!-- 排行榜弹框 start -->
+    <div class="mark" id="popupRanking">
+        <div class="mark-close game__ranking-close" id="rankingMarkClose"></div>
+        <div class="game__ranking-bg"></div>
+        <!-- 当前排名 -->
+        <div class="game__ranking-self">当前排名：<span id="currentRanking">1</span>位(只显示前100名)</div>
+        <div class="game__ranking-table" id="rankingTable">
+            <ul class="game__ranking-title">
+                <li>排名</li>
+                <li>头像</li>
+                <li>昵称</li>
+                <li>积分</li>
+            </ul>
+        </div>
     </div>
-  </div>
-  <!-- 排行榜弹框 end -->
+    <!-- 排行榜弹框 end -->
 
-  <!-- 提交弹框 start -->
-  <div class="mark" id="popupAward">
-    <div class="game__award-bg">
-      <div class="mark-close game__award-close" id="awardMarkClose"></div>
+    <!-- 提交弹框 start -->
+    <div class="mark" id="popupAward">
+        <div class="game__award-bg">
+            <div class="mark-close game__award-close" id="awardMarkClose"></div>
+        </div>
+        <input class="game__award-name" placeholder="姓名NAME:" id="awardName">
+        <input class="game__award-phone" placeholder="电话TELPHONE:" id="awardPhone">
+        <!-- 提交 -->
+        <div class="game__award-submit" id="submit"></div>
     </div>
-    <input class="game__award-name" placeholder="姓名NAME:" id="awardName">
-    <input class="game__award-phone" placeholder="电话TELPHONE:" id="awardPhone">
-    <!-- 提交 -->
-    <div class="game__award-submit" id="submit"></div>
-  </div>
-  <div class="dialog" id="dialogTip">姓名不能为空！</div>
-  <!-- 提交弹框 end -->
-  <script src="/lib/zepto/zepto.min.js"></script>
-  <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
-  <script src="../tools/config.js"></script>
-  <script src="./game.js"></script>
-  <script>
-    $('#playAgain').click(function (e) {
-      location.reload()
-    });
-    // 排行榜
-
-
-    $('#ranking').click(function () {
-      $('#popupRanking').show()
-
-      // todo: 获取排行榜数据，渲染
-      var rankingArr = [{
-          ranking: 1,
-          score: 123,
-          nickName: 'xxx',
-          avatar: '○<'
-        },
-        {
-          ranking: 2,
-          score: 123,
-          nickName: 'xxx',
-        },
-        {
-          ranking: 3,
-          score: 111,
-          nickName: 'xxx',
-        },
-        {
-          ranking: 4,
-          score: 111,
-          nickName: 'xxx',
-        },
-        {
-          ranking: 5,
-          score: 100,
-          nickName: 'xxx',
-        },
-        {
-          ranking: 6,
-          score: 100,
-          nickName: 'xxx',
-        }
-      ]
-      var domString = ''
-      rankingArr.forEach(function (el) {
-        domString += '<ul class="game__ranking-item"><li>No.' + el.ranking + '</li><li><img src=" ' + '' +
-          '" class="game__ranking-avatar"></li><li>' + el.nickName + '</li><li>' + el.ranking + '</li></ul>'
-        // domString += '<ul class="game__ranking-item"><li>No.' + el.ranking + '</li><li><img src=" ' + el.avatar + '" class="game__ranking-avatar"></li><li>' + el.nickName + '</li><li>' + el.ranking + '</li></ul>'
-      })
-      $('#rankingTable').append(domString)
-    });
-    $('#rankingMarkClose').click(function () {
-      $('#popupRanking').hide()
-    });
-
-    // 领奖台 -- submit
-    $('#award').click(function (e) {
-      $('#popupAward').show()
-      $('#popupScore').hide()
-    });
-    $('#submit').click(function () {
-      var name = $('#awardName').val()
-      var phone = $('#awardPhone').val()
-      if (!name.length) {
-        toolDialog('姓名不能为空！')
-        return
-      } else if (name.length > 12) {
-        toolDialog('姓名在12个字以内！')
-        return
-      }
-      if (!/^1\d{10}$/.test(phone.replace(/\s+/g, ''))) {
-        toolDialog('请输入正确的手机号！')
-        return
-      }
-      // todo: 提交表单
-      toolDialog('提交成功！', function () {
-        location.reload()
-      })
-    });
-    $('#awardMarkClose').click(function () {
-      $('#popupAward').hide()
-      $('#popupScore').show()
-      // location.reload()
-    });
-  </script>
+    <div class="dialog" id="dialogTip">姓名不能为空！</div>
+    <!-- 提交弹框 end -->
+    <script src="/lib/zepto/zepto.min.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+    <script src="../tools/config.js"></script>
+    <script src="./game.js"></script>
 </body>
 
 </html>
