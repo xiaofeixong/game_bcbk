@@ -75,7 +75,6 @@ $(function () {
   var myReq
 
   function move() {
-    // console.time()
     distance += step
     // transform: translate3d(0,30%,0);
 
@@ -97,10 +96,9 @@ $(function () {
       createBoxDom()
     }
     if (distance >= count * boxHeight || isDied) {
-      console.log(count, gridATop, gridBTop, 'zzzzzzzzzzz');
+      // console.log(count, gridATop, gridBTop, 'zzzzzzzzzzz');
       return
     }
-    // console.timeEnd()
     myReq = requestAnimationFrame(move)
   }
 
@@ -117,14 +115,13 @@ $(function () {
 
     // 当前点击的格子是最后一个黑格
     if (Number(target.id.replace('grid_', '')) === idsArr.pop()) {
-      // target.className = 'smallGrid isSelect'
       target.style.opacity = 0.5
       count++
       if (count === 1) {
         run('10:00')
       }
       $('#gameCount').text(count)
-      console.log(count, 'addEventListener');
+      // console.log(count, 'addEventListener');
       if (myReq) cancelAnimationFrame(myReq)
       move()
     } else {
@@ -160,7 +157,6 @@ $(function () {
       var ms = ms < 10 ? ("0" + ms) : ms; //如果出现个位数给个位数前面添加0
       var ss = s < 10 ? ("0" + s) : s;
       startTime = ss + ":" + ms;
-      console.log(startTime);
       $('#gameTime').text(startTime)
     }
     countDownTimer = setInterval(onTimer, 10); //100ms的定时器
@@ -172,6 +168,7 @@ $(function () {
     clearInterval(countDownTimer);
     setTimeout(function () {
       $('#popupScore').show()
+      $('#userScore').text(count)
     }, 500)
   }
 
