@@ -94,9 +94,8 @@
     ]
     var domString = ''
     rankingArr.forEach(function (el) {
-      domString += '<ul class="game__ranking-item"><li>No.' + el.ranking + '</li><li><img src=" ' + el.avatar + '" class="game__ranking-avatar"></li><li>' + el.nickName + '</li><li>' + el.ranking + '</li></ul>'
-      domString += '<ul class="game__ranking-item"><li>No.' + el.ranking + '</li><li><img src=" ' + el.avatar + '" class="game__ranking-avatar"></li><li>' + el.nickName + '</li><li>' + el.ranking + '</li></ul>'
-      domString += '<ul class="game__ranking-item"><li>No.' + el.ranking + '</li><li><img src=" ' + el.avatar + '" class="game__ranking-avatar"></li><li>' + el.nickName + '</li><li>' + el.ranking + '</li></ul>'
+      domString += '<ul class="game__ranking-item"><li>No.' + el.ranking + '</li><li><img src=" ' + '' + '" class="game__ranking-avatar"></li><li>' + el.nickName + '</li><li>' + el.ranking + '</li></ul>'
+      // domString += '<ul class="game__ranking-item"><li>No.' + el.ranking + '</li><li><img src=" ' + el.avatar + '" class="game__ranking-avatar"></li><li>' + el.nickName + '</li><li>' + el.ranking + '</li></ul>'
     })
     $('#rankingTable').append(domString)
 

@@ -213,7 +213,7 @@ body {
     &-bg {
       background-image: url(../images/submit.png);
       background-size: 100% 100%;
-      @include size-position(1035,
+      @include size-position-rem(1035,
       1068,
       25,
       239);
@@ -224,21 +224,21 @@ body {
       padding-left: pw(27);
       vertical-align: middle;
       color: rgb(102, 102, 102);
-      @include size-position(684,
+      @include size-position-rem(684,
       118,
       195,
       786);
     }
     &-phone {
       @extend .game__award-name;
-      @include size-position(684,
+      @include size-position-rem(684,
       118,
       195,
       948);
     }
     &-submit {
       border: 1px solid rgb(210, 103, 39);
-      @include size-position(420,
+      @include size-position-rem(420,
       124,
       329,
       1120);

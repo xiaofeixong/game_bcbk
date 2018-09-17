@@ -17,16 +17,16 @@
     <div class="mark-close home__close" id="homeMarkClose"></div>
     <div class="home__popup"></div>
   </div>
+  <script src="./js/lib/zepto.min.js"></script>
+  <script>
+    // 活动弹框
+    $('#home_activity').click(function () {
+      $('#homeMark').show();
+    })
+    $('#homeMarkClose').click(function () {
+      $('#homeMark').hide('show');
+    })
+  </script>
 </body>
-<script src="./js/lib/zepto.min.js"></script>
-<script>
-  // 活动弹框
-  $('#home_activity').click(function () {
-    $('#homeMark').show();
-  })
-  $('#homeMarkClose').click(function () {
-    $('#homeMark').hide('show');
-  })
-</script>
 
 </html>
