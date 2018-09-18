@@ -1,0 +1,35 @@
+// 闪烁光圈
+@keyframes twinkle {
+    @for $i from 0 through 10 {
+        #{$i / 10 * 100 + '%'} {
+            transform: scale(0.5 + $i * .2, 0.5 + $i * .2);
+            opacity: 1 - $i / 10;
+        }
+    }
+}
+
+// 左右晃动
+@keyframes swinging {
+    0% {
+        transform: rotate(10deg);
+    }
+    50% {
+        transform: rotate(-10deg);
+    }
+    100% {
+        transform: rotate(10deg);
+    }
+}
+
+// 按下效果
+@keyframes pressdown {
+    0% {
+        transform: translate(0, 0);
+    }
+    40% {
+        transform: translate(0, 14px);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}

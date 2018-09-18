@@ -5,7 +5,7 @@ $(function() {
     var step = 1.3 // 调节速度
     var boxHeight = 1 / rowNum * 100 // 小格子高度
         // 1. 生成交替的盒子id
-    var createGridId = (() => {
+    var createGridId = (function() {
             var gid = 'a'
             return function() {
                 if (gid == 'gridA') gid = 'gridB'
@@ -47,6 +47,7 @@ $(function() {
 
         if (identify) {
             tempArr.pop()
+            $div.style.transform = 'translate3d(0,0%,0)'
         } else {
             $div.style.top = reduce
             $div.style.transform = 'translate3d(0,' + (-100) + '%,0)' // 负的BoxDom高度加上隐藏高度
@@ -70,9 +71,9 @@ $(function() {
     // 4. 盒子移动动画函数
     var distance = 0 // 总移动距离
     var count = 0 // 总得分，即点击黑块次数
-    $('#gameCount').text(count)
     var isDied = false
     var myReq
+    $('#gameCount').text(count);
 
     function move() {
         distance += step
@@ -117,6 +118,10 @@ $(function() {
         if (Number(target.id.replace('grid_', '')) === idsArr.pop()) {
             target.style.opacity = 0.5
             count++
+            if (count % 15 === 0) {
+                step += .05
+                console.log('加速了---', step);
+            }
             if (count === 1) {
                 run('10:00')
             }
@@ -185,7 +190,6 @@ $(function() {
                 $('#userScore').text(count);
                 // TODO: 排名
                 currentRanking = res.ranking
-                console.log(currentRanking, 'currentRanking');
                 $('#userRanking').text(res.ranking);
             })
         }, 500)
@@ -196,25 +200,27 @@ $(function() {
         $('#grid_' + idsArr[idsArr.length - 1]).addClass('clickme')
     }
 
-    window.onload = () => {
-        createBoxDom('first')
-        createBoxDom()
-        clickme()
+    window.init = function() {
+        $('#gameZone').children().remove()
+        idsArr = []
+        count = 0
+        startTime = '10:00'
+        distance = 0 // 总移动距离
+        isDied = false
+        myReq = ''
+        $('#gameCount').text(count)
+        $('#gameTime').text(startTime)
+        setTimeout(function() {
+            createBoxDom('first')
+            createBoxDom()
+            clickme()
+        }, 100);
     }
 
-
-
-
-    // TODO: 设置用户头像
-    $('#userAvatar').attr('src', userInfo.headimgurl)
-
-    $('#playAgain').click(function(e) {
-        location.reload()
-    });
     // 排行榜
 
-
     $('#ranking').click(function() {
+        $('#rankingTable').children().remove()
         toolAjaxGet('activeweb.restful.getRanking', {
             url: house_url + '/activeweb.restful.getRanking'
         }, function(res) {
@@ -222,7 +228,7 @@ $(function() {
             $('#currentRanking').text(currentRanking);
 
             // TODO: 获取排行榜数据，渲染
-            var domString = ''
+            var domString = '<ul class="game__ranking-title"><li>排名</li><li>头像</li><li>昵称</li><li>积分</li></ul>'
             res.data.forEach(function(el, index) {
                 domString += '<ul class="game__ranking-item"><li>No.' + (index +
                         1) +
@@ -240,41 +246,5 @@ $(function() {
         $('#popupRanking').hide()
     });
 
-    // 领奖台 -- submit
-    $('#award').click(function(e) {
-        $('#popupAward').show()
-        $('#popupScore').hide()
-    });
-    $('#submit').click(function() {
-        var name = $('#awardName').val()
-        var phone = $('#awardPhone').val()
-        if (!name.length) {
-            toolDialog('姓名不能为空！')
-            return
-        } else if (name.length > 12) {
-            toolDialog('姓名在12个字以内！')
-            return
-        }
-        if (!/^1\d{10}$/.test(phone.replace(/\s+/g, ''))) {
-            toolDialog('请输入正确的手机号！')
-            return
-        }
-        // TODO: 提交表单
-        toolAjaxGet('servicecenterapi.order.addorder', {
-            gid: '5b9f696539b54e466c43cad6',
-            userName: name,
-            phone: phone,
-            userid: '5b9f696539b54e466c43cad6',
-            orderUrl: 'no',
-        }, function(res) {
-            console.log(res);
-            toolDialog('提交成功！', function() {
-                location.reload()
-            })
-        })
-    });
-    $('#awardMarkClose').click(function() {
-        $('#popupAward').hide()
-        $('#popupScore').show()
-    });
+    init()
 })

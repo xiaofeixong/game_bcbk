@@ -1,9 +1,12 @@
 // test
-var gw_url = 'http://sandbox.gw.fdc.com.cn/router/rest'
-var house_url = 'http://house.m.pre.fdc.com.cn'
+// var gw_url = 'http://sandbox.gw.fdc.com.cn/router/rest'
+// var house_url = 'http://house.m.pre.fdc.com.cn'
+// var uc_url = 'http://test.uc.fdc.com.cn/router/rest'
 
 // line
-// var gw_url = 'http://gw.fdc.com.cn/router/rest'
+var gw_url = 'http://gw.fdc.com.cn/router/rest'
+var house_url = 'http://decwx.fdc.com.cn'
+var uc_url = 'http://gw.fdc.com.cn/router/rest'
 var queryString = {
     stringify: function(params) {
         var search = []
@@ -137,5 +140,9 @@ if (!userInfo.openid) {
 } else {
     userInfo.headimgurl = docCookies.getItem('headimgurl')
     userInfo.nickname = docCookies.getItem('nickname')
+    toolAjaxGet('activeweb.restful.isUser', {
+        url: house_url + '/activeweb.restful.isUser',
+        openId: userInfo.openid
+    })
 }
 console.log(JSON.stringify(userInfo), 'get in');
