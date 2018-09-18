@@ -200,6 +200,7 @@ $(function() {
         $('#grid_' + idsArr[idsArr.length - 1]).addClass('clickme')
     }
 
+    // 初始化游戏界面
     window.init = function() {
         $('#gameZone').children().remove()
         idsArr = []

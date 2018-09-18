@@ -136,6 +136,7 @@ var userInfo = {}
 userInfo.openid = docCookies.getItem('openid')
 
 if (!userInfo.openid) {
+    // 用户授权：后台处理
     window.location.href = 'http://house.m.pre.fdc.com.cn/weixinServlet?sourceUrl=' + window.location.href
 } else {
     userInfo.headimgurl = docCookies.getItem('headimgurl')

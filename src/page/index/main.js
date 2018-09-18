@@ -88,6 +88,7 @@ $('#awardMarkClose').click(function() {
     $('#popupScore').show()
 });
 
+// 兼容ios 自动播放音乐
 function audioAutoPlay(id) {
     const audio = document.getElementById(id);
     const play = function() {
