@@ -5,6 +5,7 @@
 $reduce:8;
 $totalWidth:1080;
 $totalHeight:1920;
+
 html,
 body {
     font-size: 16px;
@@ -20,6 +21,7 @@ body {
         background-image: url('./images/home.jpg');
         background-size: 100% 100%;
     }
+
     &__link {
         background-image: url(./images/silkBag.png);
         background-size: 100% 100%;
@@ -30,6 +32,7 @@ body {
         animation: swinging 2s ease-in-out 0s infinite;
         transform-origin: 50% 100%;
     }
+
     &__people {
         color: #fff;
         font-size: 30px;
@@ -39,6 +42,7 @@ body {
         right: 0;
         text-align: center;
     }
+
     &__start {
         background-image: url(./images/challenge.png);
         background-size: 100% 100%;
@@ -48,9 +52,11 @@ body {
         1181);
         text-decoration: none;
         -webkit-tap-highlight-color: transparent;
+
         &:active {
             animation: pressdown 0.5s 1 ease-in-out;
         }
+
         span {
             display: block;
             margin-left: percentage(100/642);
@@ -61,6 +67,7 @@ body {
             box-shadow: 12px 23px 29px rgba(0, 0, 0, .19);
         }
     }
+
     &__close {
         @include size-position(65,
         0,
@@ -68,6 +75,7 @@ body {
         174);
         padding-top: pw(65);
     }
+
     &__popup {
         @include size-position(915,
         1436,
@@ -86,6 +94,7 @@ body {
         background-image: url('./images/game_bg.png');
         background-size: 100% 100%;
     }
+
     &__user {
         @include size-position(200,
         200,
@@ -94,6 +103,7 @@ body {
         background-color: #fff;
         border-radius: 50%;
     }
+
     &__count {
         @include size-position(200,
         60,
@@ -104,6 +114,7 @@ body {
         text-align: center;
         font-size: 30px;
     }
+
     &__time {
         &-tip {
             font-size: 28px;
@@ -114,12 +125,14 @@ body {
             left: 0;
             right: 0;
         }
+
         &-num {
             @extend .game__time-tip;
             top: ph(120);
             font-size: 60px;
         }
     }
+
     &__popup {
         &-score {
             background-image: url(./images/score.png);
@@ -129,6 +142,7 @@ body {
             25,
             380);
         }
+
         &-user {
             background-color: #000;
             border-radius: 50%;
@@ -137,6 +151,7 @@ body {
             388,
             16);
         }
+
         &-desc {
             font-size: 28px;
             line-height: 1.5;
@@ -147,18 +162,21 @@ body {
             right: 0;
             top: ph(1100);
         }
+
         &-ranking {
             @include size-position(440,
             250,
             80,
             1530);
         }
+
         &-award {
             @include size-position(440,
             250,
             560,
             1530);
         }
+
         &-again {
             background-image: url(./images/play-again.png);
             background-size: 100% 100%;
@@ -168,6 +186,7 @@ body {
             1356);
         }
     }
+
     &__award {
         &-close {
             position: absolute;
@@ -178,6 +197,7 @@ body {
             background-color: #EDCCA3;
             border-radius: 50%;
         }
+
         &-bg {
             background-image: url(./images/submit.png);
             background-size: 100% 100%;
@@ -186,6 +206,7 @@ body {
             25,
             239);
         }
+
         &-name {
             border: 1px solid rgb(210, 103, 39);
             border-radius: 30px;
@@ -197,6 +218,7 @@ body {
             195,
             786);
         }
+
         &-phone {
             @extend .game__award-name;
             @include size-position-rem(684,
@@ -204,6 +226,7 @@ body {
             195,
             948);
         }
+
         &-submit {
             @include size-position-rem(420,
             124,
@@ -211,6 +234,7 @@ body {
             1120);
         }
     }
+
     &__ranking {
         &-bg {
             background-image: url(./images/ranking.png);
@@ -220,6 +244,7 @@ body {
             86,
             228)
         }
+
         &-close {
             @include size-position(65,
             0,
@@ -227,6 +252,7 @@ body {
             174);
             padding-top: pw(65);
         }
+
         &-self {
             font-size: 28px;
             color: #000;
@@ -234,6 +260,7 @@ body {
             top: ph(485);
             left: pw(206);
         }
+
         &-table {
             font-size: 28px;
             color: #000;
@@ -242,26 +269,39 @@ body {
             206,
             578);
             overflow-y: auto;
+
             &::-webkit-scrollbar {
                 background-color: transparent;
             }
         }
+
         &-title {
             font-weight: 900;
             width: 100%;
             display: flex;
+
             li {
                 flex: 1;
                 display: flex;
                 align-items: center;
             }
         }
+
         &-item {
-            @extend .game__ranking-title;
+            font-weight: 900;
+            width: 100%;
+            display: flex;
             font-weight: 100;
             height: percentage(121/639);
             align-items: center;
+
+            li {
+                width: 100%;
+                text-align: left;
+                @include ellipsis(2);
+            }
         }
+
         &-avatar {
             width: 80px;
             height: 80px;

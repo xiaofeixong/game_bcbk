@@ -40,7 +40,6 @@ $('#bgAudio').click(function() {
 });
 
 
-// TODO: 设置用户头像
 $('#userAvatar').attr('src', userInfo.headimgurl)
 
 $('#playAgain').click(function(e) {
@@ -67,9 +66,9 @@ $('#submit').click(function() {
         toolDialog('请输入正确的手机号！')
         return
     }
-    // TODO: 提交表单
+    // TODO: 提交报名信息 -- userid < 24
     toolAjaxGet('servicecenterapi.order.addorder', {
-        gid: '5b9f696539b54e466c43cad6',
+        gid: order_gid,
         userName: name,
         phone: phone,
         userid: '5b9f696539b54e466c43cad6',

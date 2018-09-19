@@ -2,7 +2,8 @@ fis.hook('relative');
 fis.set('project.files', ['src/**', 'lib/**', 'static/**']);
 fis.config.set("project.watch.usePolling", true)
 fis.set('statics', '/statics'); //static目录
-
+fis.set('domain_test', '');
+fis.set('domain_prod', '//static.fdc.com.cn/zhuanti/game_bcbk');
 
 
 
@@ -67,8 +68,11 @@ fis
 
 
 /**********************生产环境下CSS、JS压缩合并*****************/
-//使用方法 fis3 release prod
-fis.media('prod')
+//使用方法 fis3 release test
+fis.media('test')
+  .match('*', {
+    domain: "${domain_test}"
+  })
   .match('**', {
     deploy: [
       fis.plugin('local-deliver', {
@@ -76,7 +80,25 @@ fis.media('prod')
       })
     ]
   })
+  .match('**.scss', {
+    optimizer: fis.plugin('clean-css'),
+  })
+  .match('**.js', {
+    optimizer: fis.plugin('uglify-js'),
+  })
 
+//使用方法 fis3 release prod
+fis.media('prod')
+  .match('*', {
+    domain: "${domain_prod}"
+  })
+  .match('**', {
+    deploy: [
+      fis.plugin('local-deliver', {
+        to: 'dist'
+      })
+    ]
+  })
   .match('**.scss', {
     optimizer: fis.plugin('clean-css'),
   })

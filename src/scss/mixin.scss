@@ -23,3 +23,18 @@
   left: #{$l / 1.44 + 'px'};
   top: #{$t / 1.44 - 100 + 'px'};
 }
+
+// 超出省略
+@mixin ellipsis($num:1) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  @if $num==1 {
+    white-space: nowrap;
+  }
+  @else {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $num;
+  }
+}
